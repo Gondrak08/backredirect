@@ -5,26 +5,13 @@ export default function TestComponent() {
   const [isBack, setIsBack] = useState<boolean>(false);
   const pathName = usePathname();
   const router = useRouter();
-  // window.location.replace("//www.google.com.br");
-  // const openBottomsheet = (event: any) => {
-  //   // console.log("quack");
-  //   setIsBack(!isBack);
-  //   window.history.pushState(null, "", null);
-  //   // router.replace("www.google.com");
-  //   // window.history.go(1);
-  // };
-
-  console.log("pathNaem", pathName);
   useEffect(() => {
-    window.history.pushState(null, "", null);
-    window.addEventListener("popstate", (event) => {
-      setIsBack(true);
-      console.log("hii");
-    });
-    // return () => {
-    //   window.removeEventListener("popstate", (event) =>{} );
-    // };
-  });
+    if (typeof window != "undefined")
+      window.addEventListener("popstate", (event) => {
+        setIsBack(true);
+        console.log("hii");
+      });
+  }, []);
   useEffect(() => {
     if (isBack) {
       console.log("isBackChange!", isBack);
