@@ -3,16 +3,24 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function TestComponent() {
-  if (typeof window !== "undefined") {
-    window.addEventListener("click", function () {
-      window.history.pushState({}, "", null);
-    });
-    window.addEventListener("popstate", function () {
-      console.log("User clicked the browser buttons popstate");
-      window.history.pushState(null, "", "https://www.google.com.br");
-      window.location.reload();
-    });
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("click", function () {
+        window.history.pushState({}, "", null);
+      });
+      window.addEventListener("popstate", function () {
+        console.log("User clicked the browser buttons popstate");
+        window.history.pushState(null, "", "https://www.google.com.br");
+        window.location.reload();
+      });
+    }
+  }, []);
+  // window.addEventListener("click", function () {
+  //   window.history.pushState({}, "", null);
+  // });
+  // window.addEventListener("popstate", function () {
+  //   console.log("User clicked the browser buttons popstate");
+  // });
   // const router = useRouter();
   //
   // useEffect(() => {
@@ -20,7 +28,7 @@ export default function TestComponent() {
   // window.location.href = "https://www.google.com.br";
   // window.location.reload();
   //     router.push("https://www.google.com.br");
-  // window.history.pushState(null, "", "https://www.google.com.br");
+  //     window.history.pushState(null, "", "https://www.google.com.br");
   //     router.back();
   //   };
   //
