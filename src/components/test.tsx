@@ -7,7 +7,8 @@ export default function TestComponent() {
   const openBottomsheet = (event: any) => {
     // window.location.hash = "#replace";
     console.log("quack");
-    router.push("//www.google.com.br");
+    event.preventDefault();
+    redirect("//www.google.com.br");
     // window.location.replace("//www.google.com.br");
     // window.location.href = "//www.google.com.br";
     // window.location.reload();
@@ -15,8 +16,6 @@ export default function TestComponent() {
     // window.history.pushState(null, "", "//www.google.com.br");
     // window.history.back();
     //code to handle mounting the bottomsheet on DOM.
-
-    event.preventDefault();
   };
 
   useEffect(() => {
