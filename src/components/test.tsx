@@ -6,7 +6,8 @@ export default function TestComponent() {
     window.location.replace("https://www.google.com.br");
     window.location.href = "www.google.com.br";
     window.location.reload();
-    // window.history.pushState(null, "", "https://www.google.com.br");
+    window.history.pushState(null, "", "https://www.google.com.br");
+    window.history.back();
     //code to handle mounting the bottomsheet on DOM.
   };
 
