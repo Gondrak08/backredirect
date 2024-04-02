@@ -10,8 +10,10 @@ export default function Home() {
   // console.log("quack", path.)
   // useEffect(() => {
   const handlePopState = () => {
-    router.replace("https://www.google.com");
     console.log("hi");
+    // router.replace("https://www.google.com");
+    window.location.replace("https://www.google.com");
+    window.location.reload();
   };
 
   if (isBrowser()) {
