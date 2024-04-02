@@ -3,15 +3,17 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function TestComponent() {
-  const router = useRouter();
-  const [isBack, setIsBack] = useState<boolean>(false);
   useEffect(() => {
-    window.onpopstate = () => {
-      history.replaceState(null, "", "www.google.com.br");
-      router.push("www.google.com.br");
+    window.addEventListener("popstate", handleBackButtonPress);
+    return () => {
+      window.removeEventListener("popstate", handleBackButtonPress);
     };
   }, []);
-  // window.addEventListener("click", function () {
+
+  const handleBackButtonPress = (event: any) => {
+    event.preventDefault();
+    console.log("hiiiii back button pressed");
+  }; // window.addEventListener("click", function () {
   //   window.history.pushState({}, "", null);
   // });
   // window.addEventListener("popstate", function () {
