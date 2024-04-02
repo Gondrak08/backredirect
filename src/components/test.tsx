@@ -6,15 +6,17 @@ export default function TestComponent() {
   const pathName = usePathname();
   // window.location.replace("//www.google.com.br");
   const openBottomsheet = (event: any) => {
+    console.log("quack");
     router.replace("www.google.com");
     window.history.go(1);
   };
 
   console.log("pathNaem", pathName);
   useEffect(() => {
-    addEventListener("popstate", (event) => openBottomsheet);
+    window.history.pushState(null, "", "www.google.com.br");
+    window.addEventListener("popstate", (event) => openBottomsheet);
     return () => {
-      removeEventListener("popstate", (event) => openBottomsheet);
+      window.removeEventListener("popstate", (event) => openBottomsheet);
     };
   });
   return (
