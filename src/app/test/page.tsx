@@ -10,21 +10,13 @@ export default function Home() {
   // console.log("quack", path.)
   // useEffect(() => {
   const handlePopState = () => {
-    // Verifique se o usuário está voltando da página inicial
-    // if ( === "/") {
-    // Redirecione o usuário para o link externo
-    router.push("https://www.google.com");
-    // }
+    router.replace("https://www.google.com");
     console.log("hi");
   };
 
   if (isBrowser()) {
     window.addEventListener("popstate", handlePopState);
-    console.log("quack");
-    // }, []);
-    // Remova o ouvinte de evento quando o componente for desmontado
-    // return () => window.removeEventListener("popstate", handlePopState);
-    // });
+    console.log("quack", window);
   }
 
   return (
