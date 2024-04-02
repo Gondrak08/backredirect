@@ -5,11 +5,12 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     window.addEventListener("popstate", () => {
+      router.push("https://www.google.com");
       // window.location.href = "https://www.google.com";
       // window.history.replaceState(null, "", "https://www.google.com");
       // window.location.reload();
       // router.replace("https://www.google.com.br");
-      console.log("hiiii");
+      // console.log("hiiii");
       window.location.replace("https://www.google.com");
     });
     return () => window.removeEventListener("popstate", () => {});
