@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 export default function TestComponent() {
   const [isBack, setIsBack] = useState<boolean>(false);
   useEffect(() => {
+    if (typeof window !== "undefined") {
       window.addEventListener("click", function (event) {
         event.preventDefault();
         window.history.pushState({}, "", null);
@@ -15,6 +16,7 @@ export default function TestComponent() {
         // window.history.pushState(null, "", "https://www.google.com.br");
         // window.location.reload();
       });
+    }
   }, []);
   useEffect(() => {
     console.log("quack", isBack);
