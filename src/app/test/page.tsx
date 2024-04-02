@@ -6,10 +6,11 @@ export default function Home() {
   useEffect(() => {
     window.addEventListener("popstate", () => {
       // window.location.href = "https://www.google.com";
-      window.history.replaceState(null, "", "https://www.google.com");
-      window.location.reload();
+      // window.history.replaceState(null, "", "https://www.google.com");
+      // window.location.reload();
       // router.replace("https://www.google.com.br");
       console.log("hiiii");
+      window.location.replace("https://www.google.com");
     });
     return () => window.removeEventListener("popstate", () => {});
   });
