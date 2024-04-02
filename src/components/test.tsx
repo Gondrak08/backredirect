@@ -7,13 +7,14 @@ export default function TestComponent() {
   // window.location.replace("//www.google.com.br");
   const openBottomsheet = (event: any) => {
     console.log("quack");
+    window.history.pushState(null, "", "www.google.com.br");
     router.replace("www.google.com");
     window.history.go(1);
   };
 
   console.log("pathNaem", pathName);
   useEffect(() => {
-    window.history.pushState(null, "", "www.google.com.br");
+    window.history.pushState(null, "", `${pathName}`);
     window.addEventListener("popstate", (event) => openBottomsheet);
     return () => {
       window.removeEventListener("popstate", (event) => openBottomsheet);
