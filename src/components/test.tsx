@@ -1,24 +1,20 @@
 "use client";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, redirect, usePathname } from "next/navigation";
 export default function TestComponent() {
   const router = useRouter();
   const pathName = usePathname();
-  const openBottomsheet = useCallback(() => {
-    router.push("www.twitter.com");
-  }, [router]);
   // window.location.replace("//www.google.com.br");
-  // const openBottomsheet = (event: any) => {
-  //   event.preventDefault();
-  //   window.location.replace("//www.google.com.br");
-  //   if (pathName == "/test") {
-  //     router.back();
-  //   }
-  // };
+  const openBottomsheet = (event: any) => {
+    console.log("quack");
+    event.preventDefault();
+    window.location.replace("//www.google.com.br");
+    router.back();
+  };
 
   console.log("pathNaem", pathName);
   useEffect(() => {
-    addEventListener("popstate", (event) => openBottomsheet());
+    addEventListener("popstate", (event) => openBottomsheet);
     return () => {
       removeEventListener("popstate", (event) => openBottomsheet);
     };
