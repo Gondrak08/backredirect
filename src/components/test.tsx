@@ -4,45 +4,21 @@ import { useRouter } from "next/navigation";
 
 export default function TestComponent() {
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("popstate", handleBackButtonPress);
-      return () => {
-        window.removeEventListener("popstate", handleBackButtonPress);
-      };
-    }
-  }, []);
+    const handleBackNavigation = (event: any) => {
+      // Cancela o comportamento padrão de voltar no histórico do navegador
+      event.preventDefault();
+      // Redireciona o usuário para www.google.com
+      window.location.href = "https://www.google.com";
+    };
 
-  const handleBackButtonPress = (event: any) => {
-    console.log("hiiiii back button pressed");
-    event.preventDefault();
-    if (typeof window !== "undefined") {
-      window.history.pushState(null, "", "https://www.google.com.br");
-      window.history.back();
-    }
-    // window.history.pushState({}, "", null);
-  }; // window.addEventListener("click", function () {
-  // window.history.pushState({}, "", null);
-  // });
-  // window.addEventListener("popstate", function () {
-  //   console.log("User clicked the browser buttons popstate");
-  // });
-  // const router = useRouter();
-  //
-  // useEffect(() => {
-  //   const handlePopstate = () => {
-  // window.location.href = "https://www.google.com.br";
-  // window.location.reload();
-  //     router.push("https://www.google.com.br");
-  // window.history.pushState(null, "", "https://www.google.com.br");
-  //     router.back();
-  //   };
-  //
-  //   window.addEventListener("popstate", handlePopstate);
-  //
-  //   return () => {
-  //     window.removeEventListener("popstate", handlePopstate);
-  //   };
-  // });
+    // Adiciona um ouvinte ao evento de popstate (quando o usuário clica no botão Voltar do navegador)
+    window.addEventListener("popstate", handleBackNavigation);
+
+    // Remove o ouvinte do evento quando o componente é desmontado
+    return () => {
+      window.removeEventListener("popstate", handleBackNavigation);
+    };
+  }, []);
   return (
     <div className="w-full h-screen">
       <h1 className="text-2xl font-bold text-black mx-auto">
