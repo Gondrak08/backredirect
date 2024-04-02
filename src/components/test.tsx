@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function TestComponent() {
   const openBottomsheet = () => {
     window.location.replace("https://www.google.com.br");
+    window.location.href = "www.google.com.br";
+    window.location.reload();
+    // window.history.pushState(null, "", "https://www.google.com.br");
     //code to handle mounting the bottomsheet on DOM.
   };
 
