@@ -1,14 +1,20 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter, redirect } from "next/navigation";
+import { useRouter, redirect, usePathname } from "next/navigation";
 export default function TestComponent() {
   const router = useRouter();
+  const pathName = usePathname();
   // window.location.replace("//www.google.com.br");
   const openBottomsheet = (event: any) => {
     // window.location.hash = "#replace";
-    console.log("quack");
-    event.preventDefault();
-    redirect("//www.google.com.br");
+    if (pathName == "/test") {
+      router.push("www.google.com.br");
+    }
+    return null;
+    // console.log("quack");
+    // event.preventDefault();
+    // router.replace("//www.google.com.br");
+    // router.refresh();
     // window.location.replace("//www.google.com.br");
     // window.location.href = "//www.google.com.br";
     // window.location.reload();
@@ -18,6 +24,8 @@ export default function TestComponent() {
     //code to handle mounting the bottomsheet on DOM.
   };
 
+  console.log("router", router);
+  console.log("pathNaem", pathName);
   useEffect(() => {
     addEventListener("popstate", (event) => openBottomsheet(event));
     return () => {
