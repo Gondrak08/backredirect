@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 export default function TestComponent() {
   useEffect(() => {
     console.log("window", window);
+    window.onpopstate = function () {
+      alert("!poped!");
+    };
   });
   return (
     <div className="w-full h-screen">
