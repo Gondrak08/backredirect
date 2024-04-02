@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-
+import { useRouter } from "next/navigation";
 export default function TestComponent() {
+  const router = useRouter();
   const [isBack, setIsBack] = useState<boolean>(false);
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -19,6 +20,7 @@ export default function TestComponent() {
     }
   }, []);
   useEffect(() => {
+    if (isBack) router.push("www.google.com");
     console.log("quack", isBack);
   }, [isBack]);
 
