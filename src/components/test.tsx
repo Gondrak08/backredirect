@@ -4,17 +4,24 @@ import { useRouter } from "next/navigation";
 
 export default function TestComponent() {
   useEffect(() => {
-    window.addEventListener("popstate", handleBackButtonPress);
-    return () => {
-      window.removeEventListener("popstate", handleBackButtonPress);
-    };
+    if (typeof window !== "undefined") {
+      window.addEventListener("popstate", handleBackButtonPress);
+      return () => {
+        window.removeEventListener("popstate", handleBackButtonPress);
+      };
+    }
   }, []);
 
   const handleBackButtonPress = (event: any) => {
-    event.preventDefault();
     console.log("hiiiii back button pressed");
+    event.preventDefault();
+    if (typeof window !== "undefined") {
+      window.history.pushState(null, "", "https://www.google.com.br");
+      window.history.back();
+    }
+    // window.history.pushState({}, "", null);
   }; // window.addEventListener("click", function () {
-  //   window.history.pushState({}, "", null);
+  // window.history.pushState({}, "", null);
   // });
   // window.addEventListener("popstate", function () {
   //   console.log("User clicked the browser buttons popstate");
@@ -26,7 +33,7 @@ export default function TestComponent() {
   // window.location.href = "https://www.google.com.br";
   // window.location.reload();
   //     router.push("https://www.google.com.br");
-  //     window.history.pushState(null, "", "https://www.google.com.br");
+  // window.history.pushState(null, "", "https://www.google.com.br");
   //     router.back();
   //   };
   //
