@@ -16,7 +16,7 @@ export default function TestComponent() {
     return () => {
       removeEventListener("popstate", (event) => openBottomsheet);
     };
-  }, []);
+  });
   return (
     <div className="w-full h-screen">
       <h1 className="text-2xl font-bold text-black mx-auto">
