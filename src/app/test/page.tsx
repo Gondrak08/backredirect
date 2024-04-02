@@ -1,25 +1,20 @@
 "use client";
-import { useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
 
-const isBrowser = () => typeof window !== "undefined";
+import { useEffect } from "react";
 
 export default function Home() {
-  const router = useRouter();
-  const path = usePathname();
-  // console.log("quack", path.)
-  // useEffect(() => {
-  const handlePopState = () => {
-    console.log("hi");
-    // router.replace("https://www.google.com");
-    window.location.replace("https://www.google.com");
-    window.location.reload();
-  };
+  useEffect(() => {
+    const handlePopstate = () => {
+      // Redireciona o usuário para fora do site
+      window.location.replace("https://www.google.com");
+    };
 
-  if (isBrowser()) {
-    window.addEventListener("popstate", handlePopState);
-    console.log("quack", window);
-  }
+    // Adicione um listener para o evento 'popstate'
+    window.addEventListener("popstate", handlePopstate);
+
+    // Retorne a função de limpeza para remover o listener
+    return () => window.removeEventListener("popstate", handlePopstate);
+  }, []);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
