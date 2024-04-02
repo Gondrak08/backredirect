@@ -4,9 +4,14 @@ import { useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
-  const handlePopState = useCallback(() => {
-    router.push("https://www.google.com.br");
-  }, [router]);
+  // const handlePopState = useCallback(() => {
+  //   router.push("https://www.google.com.br");
+  // }, [router]);
+
+  function handlePopState() {
+    window.history.pushState(null, "", `https://www.google.com.br"`);
+    window.location.reload();
+  }
   useEffect(() => {
     window.addEventListener("popstate", handlePopState);
   }, [handlePopState]);
