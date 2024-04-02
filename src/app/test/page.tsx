@@ -6,18 +6,18 @@ export default function Home() {
   const path = usePathname();
   // console.log("quack", path.)
   useEffect(() => {
-  const handlePopState = () => {
-    // Verifique se o usuário está voltando da página inicial
-    // if ( === "/") {
-    // Redirecione o usuário para o link externo
-    router.push("https://www.google.com");
-    // }
-    console.log("hi");
-  };
-
-  // Adicione um ouvinte de evento para o evento "popstate"
-  window?.addEventListener("popstate", handlePopState);
-  })
+    const handlePopState = () => {
+      // Verifique se o usuário está voltando da página inicial
+      // if ( === "/") {
+      // Redirecione o usuário para o link externo
+      router.push("https://www.google.com");
+      // }
+      console.log("hi");
+    };
+    if (typeof window !== "undefined")
+      // Adicione um ouvinte de evento para o evento "popstate"
+      window?.addEventListener("popstate", handlePopState);
+  }, [window]);
   // Remova o ouvinte de evento quando o componente for desmontado
   // return () => window.removeEventListener("popstate", handlePopState);
   // });
