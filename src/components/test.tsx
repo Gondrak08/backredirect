@@ -8,7 +8,7 @@ export default function TestComponent() {
   const openBottomsheet = (event: any) => {
     // console.log("quack");
     setIsBack(!isBack);
-    window.history.pushState(null, "", pathName);
+    window.history.pushState(null, "", null);
     // router.replace("www.google.com");
     // window.history.go(1);
   };
@@ -17,10 +17,10 @@ export default function TestComponent() {
   useEffect(() => {
     console.log("quack", isBack);
     if (isBack) console.log("isBackChange!", isBack);
-    window.history.pushState(null, "", `${pathName}`);
-    window.addEventListener("popstate", (event) => openBottomsheet);
+    window.history.pushState(null, "", null);
+    window.addEventListener("popstate", (event) => openBottomsheet(event));
     return () => {
-      window.removeEventListener("popstate", (event) => openBottomsheet);
+      window.removeEventListener("popstate", (event) => openBottomsheet(event));
     };
   });
   return (
