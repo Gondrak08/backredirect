@@ -20,7 +20,6 @@ export default function TestComponent() {
     }
   }, []);
   useEffect(() => {
-    if (isBack) router.push("www.google.com");
     console.log("quack", isBack);
   }, [isBack]);
 
