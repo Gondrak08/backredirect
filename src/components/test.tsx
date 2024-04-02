@@ -7,9 +7,10 @@ export default function TestComponent() {
 
   useEffect(() => {
     const handlePopstate = () => {
-      window.location.href = "https://www.google.com.br";
-      window.location.reload();
-      router.push("https://www.google.com.br");
+      // window.location.href = "https://www.google.com.br";
+      // window.location.reload();
+      // router.push("https://www.google.com.br");
+      window.history.pushState(null, "", window.location.href);
     };
 
     window.addEventListener("popstate", handlePopstate);
