@@ -1,12 +1,10 @@
 "use client";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 export default function Home() {
-  const router = useRouter();
-
   useEffect(() => {
     window.addEventListener("popstate", () => {
-      router.push("https://www.google.com");
+      // router.push("https://www.google.com");
+      window.location.replace("https://www.google.com");
     });
     return () => window.removeEventListener("popstate", () => {});
   });
