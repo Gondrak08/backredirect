@@ -3,18 +3,22 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
-  useEffect(() => {
-    window.addEventListener("popstate", () => {
-      router.push("https://www.google.com");
-      // window.location.href = "https://www.google.com";
-      // window.history.replaceState(null, "", "https://www.google.com");
-      // window.location.reload();
-      // router.replace("https://www.google.com.br");
-      // console.log("hiiii");
-      window.location.replace("https://www.google.com");
-    });
-    return () => window.removeEventListener("popstate", () => {});
-  });
+  // useEffect(() => {
+  const handlePopState = () => {
+    // Verifique se o usuário está voltando da página inicial
+    // if ( === "/") {
+    // Redirecione o usuário para o link externo
+    router.push("https://www.google.com");
+    // }
+    console.log("hi");
+  };
+
+  // Adicione um ouvinte de evento para o evento "popstate"
+  window.addEventListener("popstate", handlePopState);
+
+  // Remova o ouvinte de evento quando o componente for desmontado
+  // return () => window.removeEventListener("popstate", handlePopState);
+  // });
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
