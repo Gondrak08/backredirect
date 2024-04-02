@@ -19,15 +19,19 @@ export default function TestComponent() {
     window.history.pushState(null, "", null);
     window.addEventListener("popstate", (event) => {
       setIsBack(true);
-      router.push("//www.google.com.br");
+      console.log("hii");
     });
     // return () => {
     //   window.removeEventListener("popstate", (event) =>{} );
     // };
   });
   useEffect(() => {
-    if (isBack) console.log("isBackChange!", isBack);
-  }, [isBack]);
+    if (isBack) {
+      console.log("isBackChange!", isBack);
+
+      router.push("//www.google.com.br");
+    }
+  }, [isBack, router]);
   return (
     <div className="w-full h-screen">
       <h1 className="text-2xl font-bold text-black mx-auto">
