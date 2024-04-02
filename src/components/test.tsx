@@ -3,22 +3,17 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function TestComponent() {
+  const openBottomsheet = () => {
+    window.location.replace("https://www.google.com.br");
+    //code to handle mounting the bottomsheet on DOM.
+  };
+
   useEffect(() => {
-    const handleBackNavigation = (event: any) => {
-      // Cancela o comportamento padrão de voltar no histórico do navegador
-      event.preventDefault();
-      // Redireciona o usuário para www.google.com
-      window.location.href = "https://www.google.com";
-    };
-
-    // Adiciona um ouvinte ao evento de popstate (quando o usuário clica no botão Voltar do navegador)
-    window.addEventListener("popstate", handleBackNavigation);
-
-    // Remove o ouvinte do evento quando o componente é desmontado
+    addEventListener("popstate", (event) => openBottomsheet());
     return () => {
-      window.removeEventListener("popstate", handleBackNavigation);
+      removeEventListener("popstate", (event) => openBottomsheet());
     };
-  }, []);
+  });
   return (
     <div className="w-full h-screen">
       <h1 className="text-2xl font-bold text-black mx-auto">
