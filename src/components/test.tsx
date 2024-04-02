@@ -11,7 +11,8 @@ export default function TestComponent() {
         setIsBack(true);
         console.log("hii");
       });
-  }, []);
+  });
+
   useEffect(() => {
     if (isBack) {
       console.log("isBackChange!", isBack);
