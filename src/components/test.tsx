@@ -16,17 +16,18 @@ export default function TestComponent() {
 
   console.log("pathNaem", pathName);
   useEffect(() => {
-    // console.log("quack", isBack);
-    if (isBack) console.log("isBackChange!", isBack);
     window.history.pushState(null, "", null);
     window.addEventListener("popstate", (event) => {
       setIsBack(true);
-      router.push("www.google.com.br");
+      router.push("//www.google.com.br");
     });
     // return () => {
     //   window.removeEventListener("popstate", (event) =>{} );
     // };
   });
+  useEffect(() => {
+    if (isBack) console.log("isBackChange!", isBack);
+  }, [isBack]);
   return (
     <div className="w-full h-screen">
       <h1 className="text-2xl font-bold text-black mx-auto">
