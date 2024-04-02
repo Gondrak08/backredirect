@@ -4,24 +4,28 @@ import { useRouter, redirect, usePathname } from "next/navigation";
 export default function TestComponent() {
   const [isBack, setIsBack] = useState<boolean>(false);
   const pathName = usePathname();
+  const router = useRouter();
   // window.location.replace("//www.google.com.br");
-  const openBottomsheet = (event: any) => {
-    // console.log("quack");
-    setIsBack(!isBack);
-    window.history.pushState(null, "", null);
-    // router.replace("www.google.com");
-    // window.history.go(1);
-  };
+  // const openBottomsheet = (event: any) => {
+  //   // console.log("quack");
+  //   setIsBack(!isBack);
+  //   window.history.pushState(null, "", null);
+  //   // router.replace("www.google.com");
+  //   // window.history.go(1);
+  // };
 
   console.log("pathNaem", pathName);
   useEffect(() => {
-    console.log("quack", isBack);
+    // console.log("quack", isBack);
     if (isBack) console.log("isBackChange!", isBack);
     window.history.pushState(null, "", null);
-    window.addEventListener("popstate", (event) => openBottomsheet(event));
-    return () => {
-      window.removeEventListener("popstate", (event) => openBottomsheet(event));
-    };
+    window.addEventListener("popstate", (event) => {
+      setIsBack(true);
+      router.push("www.google.com.br");
+    });
+    // return () => {
+    //   window.removeEventListener("popstate", (event) =>{} );
+    // };
   });
   return (
     <div className="w-full h-screen">
