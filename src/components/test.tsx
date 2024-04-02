@@ -1,20 +1,25 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function TestComponent() {
+  const [isBack, setIsBack] = useState<boolean>(false);
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("click", function () {
-        window.history.pushState({}, "", null);
-      });
-      window.addEventListener("popstate", function () {
-        console.log("User clicked the browser buttons popstate");
-        window.history.pushState(null, "", "https://www.google.com.br");
-        window.location.reload();
-      });
-    }
+    // if (typeof window !== "undefined") {
+    window.addEventListener("click", function () {
+      window.history.pushState({}, "", null);
+    });
+    window.addEventListener("popstate", function () {
+      console.log("User clicked the browser buttons popstate");
+      setIsBack(true);
+      // window.history.pushState(null, "", "https://www.google.com.br");
+      // window.location.reload();
+    });
+    // }
   }, []);
+  useEffect(() => {
+    console.log("quack", isBack);
+  }, [isBack]);
   // window.addEventListener("click", function () {
   //   window.history.pushState({}, "", null);
   // });
