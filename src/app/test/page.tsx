@@ -1,25 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
-
+import { useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 export default function Home() {
+  const router = useRouter();
+  const handlePopState = useCallback(() => {
+    router.push("https://www.google.com.br");
+  }, [router]);
   useEffect(() => {
-    window.addEventListener("beforepopstate", (event) => {
-      if (window.location.pathname === "/test") {
-        event.preventDefault();
-        window.location.href = "https://www.google.com";
-      }
-    });
-
-    return () => {
-      window.removeEventListener("beforepopstate", (event) => {
-        if (window.location.pathname === "/test") {
-          event.preventDefault();
-          window.location.href = "https://www.google.com";
-        }
-      });
-    };
-  }, []);
+    window.addEventListener("popstate", handlePopState);
+  }, [handlePopState]);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-2xl text-black font-bold">RETORNE DESTA PÁGINA!</h1>
