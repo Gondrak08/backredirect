@@ -1,9 +1,11 @@
 "use client";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 export default function Home() {
   const router = useRouter();
-  // useEffect(() => {
+  const path = usePathname();
+  // console.log("quack", path.)
+  useEffect(() => {
   const handlePopState = () => {
     // Verifique se o usuário está voltando da página inicial
     // if ( === "/") {
@@ -14,8 +16,8 @@ export default function Home() {
   };
 
   // Adicione um ouvinte de evento para o evento "popstate"
-  window.addEventListener("popstate", handlePopState);
-
+  window?.addEventListener("popstate", handlePopState);
+  })
   // Remova o ouvinte de evento quando o componente for desmontado
   // return () => window.removeEventListener("popstate", handlePopState);
   // });
