@@ -14,9 +14,15 @@ export default function Home() {
     router.push("https://www.google.com.br");
   }
   useEffect(() => {
-    window.addEventListener("popstate", handlePopState);
+    window.onhashchange = function () {
+      window.history.pushState(null, "", `https://www.google.com.br"`);
+      window.location.reload();
+      router.push("https://www.google.com.br");
+      console.log("quack");
+    };
+    // window.addEventListener("hashchange", handlePopState);
     // return () => window.removeEventListener("popstate", handlePopState);
-  }, [handlePopState]);
+  }, []);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-2xl text-black font-bold">RETORNE DESTA PÁGINA!</h1>
