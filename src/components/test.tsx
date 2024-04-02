@@ -6,10 +6,8 @@ export default function TestComponent() {
   const pathName = usePathname();
   // window.location.replace("//www.google.com.br");
   const openBottomsheet = (event: any) => {
-    console.log("quack");
-    event.preventDefault();
-    window.location.replace("//www.google.com.br");
-    router.back();
+    router.replace("www.google.com");
+    window.history.go(1);
   };
 
   console.log("pathNaem", pathName);
@@ -18,7 +16,7 @@ export default function TestComponent() {
     return () => {
       removeEventListener("popstate", (event) => openBottomsheet);
     };
-  }, [openBottomsheet]);
+  }, []);
   return (
     <div className="w-full h-screen">
       <h1 className="text-2xl font-bold text-black mx-auto">
