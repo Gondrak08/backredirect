@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function TestComponent() {
+  const router = useRouter();
   const [isBack, setIsBack] = useState<boolean>(false);
   useEffect(() => {
     window.onpopstate = () => {
       history.replaceState(null, "", "www.google.com.br");
+      router.push("www.google.com.br");
     };
   }, []);
   // window.addEventListener("click", function () {
