@@ -2,20 +2,22 @@
 import { useEffect, useState } from "react";
 import { useRouter, redirect } from "next/navigation";
 export default function TestComponent() {
-  const openBottomsheet = () => {
+  const openBottomsheet = (event: any) => {
+    event.preventDefault();
+    console.log("quack");
     window.location.replace("//www.google.com.br");
     window.location.href = "//www.google.com.br";
     window.location.reload();
-    redirect("//www.google.com.br");
+    // redirect("//www.google.com.br");
     // window.history.pushState(null, "", "//www.google.com.br");
     // window.history.back();
     //code to handle mounting the bottomsheet on DOM.
   };
 
   useEffect(() => {
-    addEventListener("popstate", (event) => openBottomsheet());
+    addEventListener("popstate", (event) => openBottomsheet(event));
     return () => {
-      removeEventListener("popstate", (event) => openBottomsheet());
+      removeEventListener("popstate", (event) => openBottomsheet(event));
     };
   });
   return (
