@@ -6,25 +6,13 @@ export default function TestComponent() {
   const pathName = usePathname();
   // window.location.replace("//www.google.com.br");
   const openBottomsheet = (event: any) => {
-    // window.location.hash = "#replace";
+    event.preventDefault();
+    window.location.replace("//www.google.com.br");
     if (pathName == "/test") {
-      router.push("www.google.com.br");
+      router.back();
     }
-    return null;
-    // console.log("quack");
-    // event.preventDefault();
-    // router.replace("//www.google.com.br");
-    // router.refresh();
-    // window.location.replace("//www.google.com.br");
-    // window.location.href = "//www.google.com.br";
-    // window.location.reload();
-    // redirect("//www.google.com.br");
-    // window.history.pushState(null, "", "//www.google.com.br");
-    // window.history.back();
-    //code to handle mounting the bottomsheet on DOM.
   };
 
-  console.log("router", router);
   console.log("pathNaem", pathName);
   useEffect(() => {
     addEventListener("popstate", (event) => openBottomsheet(event));
