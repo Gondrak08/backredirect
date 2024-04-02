@@ -2,18 +2,20 @@
 import { useEffect, useState } from "react";
 import { useRouter, redirect, usePathname } from "next/navigation";
 export default function TestComponent() {
-  const router = useRouter();
+  const [isBack, setIsBack] = useState<boolean>(false);
   const pathName = usePathname();
   // window.location.replace("//www.google.com.br");
   const openBottomsheet = (event: any) => {
     // console.log("quack");
-    window.history.pushState(null, "", "www.google.com.br");
+    // window.history.pushState(null, "", "www.google.com.br");
     // router.replace("www.google.com");
     // window.history.go(1);
   };
 
   console.log("pathNaem", pathName);
   useEffect(() => {
+    console.log("quack", isBack);
+    if (isBack) console.log("isBackChange!", isBack);
     window.history.pushState(null, "", `${pathName}`);
     window.addEventListener("popstate", (event) => openBottomsheet);
     return () => {
