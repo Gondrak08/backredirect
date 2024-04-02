@@ -8,7 +8,8 @@ export default function TestComponent() {
       window.addEventListener("click", function () {
         window.history.pushState({}, "", null);
       });
-      window.addEventListener("popstate", function () {
+      window.addEventListener("popstate", function (event) {
+        event.preventDefault();
         console.log("User clicked the browser buttons popstate");
         setIsBack(true);
         // window.history.pushState(null, "", "https://www.google.com.br");
