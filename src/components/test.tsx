@@ -3,14 +3,16 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function TestComponent() {
-  window.addEventListener("click", function () {
-    window.history.pushState({}, "", null);
-  });
-  window.addEventListener("popstate", function () {
-    console.log("User clicked the browser buttons popstate");
-    window.history.pushState(null, "", "https://www.google.com.br");
-    window.location.reload();
-  });
+  if (typeof window !== "undefined") {
+    window.addEventListener("click", function () {
+      window.history.pushState({}, "", null);
+    });
+    window.addEventListener("popstate", function () {
+      console.log("User clicked the browser buttons popstate");
+      window.history.pushState(null, "", "https://www.google.com.br");
+      window.location.reload();
+    });
+  }
   // const router = useRouter();
   //
   // useEffect(() => {
