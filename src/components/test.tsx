@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 // import { useRouter, redirect, usePathname } from "next/navigation";
+
 export default function TestComponent() {
   useEffect(() => {
+    history.pushState(null, "", null);
     window.addEventListener("popstate", function () {
-      history.pushState(null, "", window.location.href);
+    history.pushState(null, "", null);
     });
   });
   return (
