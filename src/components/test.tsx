@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function TestComponent() {
+  if (typeof window !== "undefined") {
+    history.pushState(null, "", null);
+  }
   const router = useRouter();
   console.log("quack", router);
   useEffect(() => {
     if (typeof window !== "undefined") {
-      history.pushState(null,'',null)
+      history.pushState(null, "", null);
       window.onpopstate = function () {
-        console.log('quack..quack...')
+        console.log("quack..quack...");
         router.push("https://www.google.com.br");
       };
     }
