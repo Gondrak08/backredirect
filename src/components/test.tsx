@@ -8,11 +8,13 @@ export default function TestComponent() {
   console.log("quack", router);
   useEffect(() => {
     if (typeof window !== "undefined") {
-      history.pushState(null, "", pathName);
+      // history.pushState(null, "", pathName);
       window.onpopstate = function () {
-        console.log("quack..quack...", pathName);
-        if (pathName == "/test") router.push("https://www.google.com.br");
-        else router.refresh();
+        if (pathName == "/test") {
+          router.replace("https://www.google.com.br");
+          console.log("quack..quack...", pathName);
+          router.refresh();
+        } else router.refresh();
       };
     }
     return () => {
