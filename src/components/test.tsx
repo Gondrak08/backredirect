@@ -1,25 +1,24 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function TestComponent() {
-  if (typeof window !== "undefined") {
-    history.pushState(null, "", null);
-  }
   const router = useRouter();
+  const pathName = usePathname();
   console.log("quack", router);
   useEffect(() => {
     if (typeof window !== "undefined") {
-      history.pushState(null, "", null);
+      history.pushState(null, "", pathName);
       window.onpopstate = function () {
-        console.log("quack..quack...");
-        router.push("https://www.google.com.br");
+        console.log("quack..quack...", pathName);
+        if (pathName == "/test") router.push("https://www.google.com.br");
+        else router.refresh();
       };
     }
     return () => {
       null;
     };
-  }, [router]);
+  }, [router, pathName]);
 
   return (
     <div className="w-full h-screen">
